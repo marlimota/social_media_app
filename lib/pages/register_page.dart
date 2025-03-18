@@ -3,15 +3,18 @@ import 'package:social_media_app/components/custom_button.dart';
 
 import '../components/custom_textfield.dart';
 
-class LoginPage extends StatelessWidget {
+class RegisterPage extends StatelessWidget {
   final void Function()? onTap;
 
-  LoginPage({super.key, required this.onTap});
+  RegisterPage({super.key, required this.onTap});
 
+  final TextEditingController userNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmePasswordController =
+      TextEditingController();
 
-  void login() {}
+  void register() {}
 
   @override
   Widget build(BuildContext context) {
@@ -32,30 +35,37 @@ class LoginPage extends StatelessWidget {
               Text('SOCIAL MEDIA', style: TextStyle(fontSize: 20)),
               const SizedBox(height: 50),
               CustomTextField(
+                hintText: 'Nome',
+                obscureText: false,
+                controller: userNameController,
+              ),
+              const SizedBox(height: 10),
+              CustomTextField(
                 hintText: 'Email',
                 obscureText: false,
                 controller: emailController,
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
+
               CustomTextField(
                 hintText: 'Senha',
                 obscureText: true,
                 controller: passwordController,
               ),
               const SizedBox(height: 10),
-              Text(
-                'Esqueceu a senha?',
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.inversePrimary,
-                ),
+              CustomTextField(
+                hintText: 'Confirmar senha',
+                obscureText: true,
+                controller: confirmePasswordController,
               ),
+
               const SizedBox(height: 30),
-              CustomButton(text: 'Login', onTap: login),
+              CustomButton(text: 'Criar Conta', onTap: register),
               const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Não possui conta? '),
+                  Text('Já possui conta? '),
                   GestureDetector(
                     onTap: onTap,
                     child: Text(
