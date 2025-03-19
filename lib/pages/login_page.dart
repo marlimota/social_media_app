@@ -29,7 +29,7 @@ class LoginPage extends StatelessWidget {
                 color: Theme.of(context).colorScheme.inversePrimary,
               ),
               const SizedBox(height: 25),
-              Text('SOCIAL MEDIA', style: TextStyle(fontSize: 20)),
+              Text('MINIMAL', style: TextStyle(fontSize: 20)),
               const SizedBox(height: 50),
               CustomTextField(
                 hintText: 'Email',
@@ -38,13 +38,13 @@ class LoginPage extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               CustomTextField(
-                hintText: 'Senha',
+                hintText: 'Password',
                 obscureText: true,
                 controller: passwordController,
               ),
               const SizedBox(height: 10),
               Text(
-                'Esqueceu a senha?',
+                'Forgot Password?',
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.inversePrimary,
                 ),
@@ -55,11 +55,11 @@ class LoginPage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Não possui conta? '),
+                  Text('Dont have an account? '),
                   GestureDetector(
                     onTap: onTap,
                     child: Text(
-                      'Clique aqui',
+                      'Click Here',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),

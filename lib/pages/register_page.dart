@@ -1,20 +1,52 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:social_media_app/components/custom_button.dart';
+import 'package:social_media_app/helper/helper_functions.dart';
 
 import '../components/custom_textfield.dart';
 
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends StatefulWidget {
   final void Function()? onTap;
 
-  RegisterPage({super.key, required this.onTap});
+  const RegisterPage({super.key, required this.onTap});
 
+  @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController userNameController = TextEditingController();
+
   final TextEditingController emailController = TextEditingController();
+
   final TextEditingController passwordController = TextEditingController();
+
   final TextEditingController confirmePasswordController =
       TextEditingController();
 
-  void register() {}
+  void registerUser() async {
+    showDialog(
+      context: context,
+      builder: (context) => const Center(child: CircularProgressIndicator()),
+    );
+
+    if (passwordController.text != confirmePasswordController.text) {
+      Navigator.pop(context);
+      errorMessage('Senha incorreta', context);
+    }
+
+    try {
+      UserCredential? userCredential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+            email: emailController.text,
+            password: passwordController.text,
+          );
+      Navigator.pop(context);
+    } on FirebaseAuthException catch (e) {
+      Navigator.pop(context);
+      errorMessage(e.code, context);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,10 +64,10 @@ class RegisterPage extends StatelessWidget {
                 color: Theme.of(context).colorScheme.inversePrimary,
               ),
               const SizedBox(height: 25),
-              Text('SOCIAL MEDIA', style: TextStyle(fontSize: 20)),
+              Text('MINIMAL', style: TextStyle(fontSize: 20)),
               const SizedBox(height: 50),
               CustomTextField(
-                hintText: 'Nome',
+                hintText: 'Username',
                 obscureText: false,
                 controller: userNameController,
               ),
@@ -48,28 +80,28 @@ class RegisterPage extends StatelessWidget {
               const SizedBox(height: 10),
 
               CustomTextField(
-                hintText: 'Senha',
+                hintText: 'Password',
                 obscureText: true,
                 controller: passwordController,
               ),
               const SizedBox(height: 10),
               CustomTextField(
-                hintText: 'Confirmar senha',
+                hintText: 'Confirm Password',
                 obscureText: true,
                 controller: confirmePasswordController,
               ),
 
               const SizedBox(height: 30),
-              CustomButton(text: 'Criar Conta', onTap: register),
+              CustomButton(text: 'Register', onTap: () {}),
               const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Já possui conta? '),
+                  Text('Already have an account? '),
                   GestureDetector(
-                    onTap: onTap,
+                    onTap: widget.onTap,
                     child: Text(
-                      'Clique aqui',
+                      'Login Here',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
