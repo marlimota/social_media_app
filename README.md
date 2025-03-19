@@ -1,16 +1,15 @@
-# social_media_app
+# **Social Media App**
+#### pt-br
+Simple social media posting app using firebase login.
 
-A new Flutter project.
+## **Preview**
+<table>
+  <tr>
+    <td> <img src= "https://i.imgur.com/DjmdBdR.png" height= "250"/> </td
+  </tr>
+</table>
 
-## Getting Started
+## **About**
+Build using Flutter and Firebase.
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+#### in progress
